@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ============================================
+ ソルバーの基本情報
+============================================= -->
+<SolverDefinition 
+name="Debug_solver_for_GELATO" 
+caption="Debug solver for GELATO" 
+version="0.0.25020601" 
+copyright="Keita Hoshino" 
+release="2025.02.06" 
+homepage="" 
+executable="debug_solver.py" 
+iterationtype="time" 
+gridtype="structured2d"
+>
+
+    <!-- ============================================
+     計算条件の定義
+    ============================================= -->
+    <CalculationCondition>
+        <Tab name="Condition" caption="Condition">
+            <Item name="time_end" caption="time end">
+                <Definition valueType="integer" default="10"/>
+            </Item>
+            <Item name="flow_info" caption="Flow information">
+                <Definition conditionType="functional">
+                    <Parameter name="time" valueType="real" caption="Time"/>
+                    <Value name="water_level" valueType="real" caption="Water level(m)"/>
+                    <Value name="Velocity_xi_coefficient" valueType="real" caption="Velocity xi coefficient"/>
+                    <Value name="Velocity_eta_coefficient" valueType="real" caption="Velocity eta coefficient"/>
+                </Definition>
+            </Item>
+        </Tab>
+    </CalculationCondition>
+
+    <GridRelatedCondition>
+        <!-- 格子点属性 -->
+        <Item name="elevation" caption="Elevation">
+            <Definition valueType="real" position="node" default="max" />
+        </Item>
+    </GridRelatedCondition>
+
+</SolverDefinition>
