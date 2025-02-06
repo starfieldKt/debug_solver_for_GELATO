@@ -6,7 +6,7 @@
 <SolverDefinition 
 name="Debug_solver_for_GELATO" 
 caption="Debug solver for GELATO" 
-version="0.0.25020601" 
+version="1.0.25020601" 
 copyright="Keita Hoshino" 
 release="2025.02.06" 
 homepage="" 
