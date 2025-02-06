@@ -36,7 +36,7 @@ gridtype="structured2d"
 
     <GridRelatedCondition>
         <!-- 格子点属性 -->
-        <Item name="elevation" caption="Elevation">
+        <Item name="Elevation" caption="Elevation">
             <Definition valueType="real" position="node" default="max" />
         </Item>
     </GridRelatedCondition>

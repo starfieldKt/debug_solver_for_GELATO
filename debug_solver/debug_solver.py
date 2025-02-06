@@ -88,7 +88,7 @@ node_in["coordinate_x"] = grid_x_arr_org.reshape(node_size_j, node_size_i).T
 node_in["coordinate_y"] = grid_y_arr_org.reshape(node_size_j, node_size_i).T
 
 # 標高を読み込み
-node_in["elevation"] = iric.cg_iRIC_Read_Grid_Real_Node(fid, "elevation").reshape(node_size_j, node_size_i).T
+node_in["elevation"] = iric.cg_iRIC_Read_Grid_Real_Node(fid, "Elevation").reshape(node_size_j, node_size_i).T
 
 print("----------mainloop start----------")
 
@@ -171,7 +171,7 @@ for t in range(time_end + 1):
     iric.cg_iRIC_Write_Sol_Time(fid, float(t))
 
     # 標高を書き込み
-    iric.cg_iRIC_Write_Sol_Node_Real(fid, "elevation", node_in["elevation"].T.flatten())
+    iric.cg_iRIC_Write_Sol_Node_Real(fid, "Elevation", node_in["elevation"].T.flatten())
 
     # 流速を書き込み
     iric.cg_iRIC_Write_Sol_Node_Real(fid, "velocityX", node_sol["velocity_x"].T.flatten())
