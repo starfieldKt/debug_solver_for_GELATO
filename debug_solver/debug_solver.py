@@ -2,6 +2,8 @@ import math
 import numpy as np
 import iric
 import sys
+import time  # 追加
+from datetime import timedelta  # 追加
 
 # 計算格子のサイズ
 node_in = np.dtype([
@@ -17,6 +19,7 @@ node_sol = np.dtype([
     ("velocity_y", "f8"),
 ])
 
+start_time = time.time()  # 計算開始時間を記録
 print("----------Start----------")
 
 ###############################################################################
@@ -198,7 +201,13 @@ for t in range(time_end + 1):
         print("Cancel button was pressed. Calculation is finishing. . .")
         break
 
+end_time = time.time()  # 計算終了時間を記録
+
+# 計算時間をhh:mm:ss形式で出力
+elapsed_time = end_time - start_time
+formatted_time = str(timedelta(seconds=elapsed_time))
 print("----------Finish----------")
+print(f"計算時間: {formatted_time}")  # 計算時間を出力
 
 ###############################################################################
 # 計算終了処理
