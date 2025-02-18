@@ -134,6 +134,9 @@ if node_size_j % 2 == 1:  # 奇数のとき
 else:  # 偶数のとき
     sign_eta[node_index_j_center:] = -1  # 完全な反転 (0 は作らない)
 
+# コンソール出力のヘッダー
+print(f"{'Time':>7} {'Water Level':>12} {'Velocity Xi':>12} {'Velocity Eta':>12}")
+
 ###############################################################################
 # メインループスタート
 ###############################################################################
@@ -190,7 +193,8 @@ for t in range(time_end + 1):
     iric.cg_iRIC_Write_Sol_End(fid)
 
     # コンソールに時間を出力
-    print("t= " + str(t))
+
+    print(f"{t:7d} {water_level:12.2f} {Velocity_xi_coefficient:12.3f} {Velocity_eta_coefficient:12.3f}")
 
     # 計算結果の再読み込みが要求されていれば出力を行う
     iric.cg_iRIC_Check_Update(fid)
