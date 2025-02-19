@@ -6,9 +6,9 @@
 <SolverDefinition 
 name="Debug_solver_for_GELATO" 
 caption="Debug solver for GELATO" 
-version="1.0.25020601" 
+version="1.1.25021901" 
 copyright="Keita Hoshino" 
-release="2025.02.06" 
+release="2025.02.19" 
 homepage="" 
 executable="debug_solver.py" 
 iterationtype="time" 
@@ -20,9 +20,6 @@ gridtype="structured2d"
     ============================================= -->
     <CalculationCondition>
         <Tab name="Condition" caption="Condition">
-            <Item name="time_end" caption="time end">
-                <Definition valueType="integer" default="10"/>
-            </Item>
             <Item name="flow_info" caption="Flow information">
                 <Definition conditionType="functional">
                     <Parameter name="time" valueType="real" caption="Time"/>

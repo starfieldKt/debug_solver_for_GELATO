@@ -58,9 +58,6 @@ iric.cg_iRIC_Clear_Sol(fid)
 # 計算条件読み込み
 ###############################################################################
 
-# 計算時間を読み込み
-time_end = iric.cg_iRIC_Read_Integer(fid, "time_end")
-
 # 流れの情報の配列の長さを読み込み
 flow_info_arry_size = iric.cg_iRIC_Read_FunctionalSize(fid, "flow_info")
 # 流れの情報の配列を読み込み
@@ -68,6 +65,9 @@ flow_info_time_arr = iric.cg_iRIC_Read_FunctionalWithName(fid, "flow_info", "tim
 water_level_arr = iric.cg_iRIC_Read_FunctionalWithName(fid, "flow_info", "water_level")
 Velocity_xi_coefficient_arr = iric.cg_iRIC_Read_FunctionalWithName(fid, "flow_info", "Velocity_xi_coefficient")
 Velocity_eta_coefficient_arr = iric.cg_iRIC_Read_FunctionalWithName(fid, "flow_info", "Velocity_eta_coefficient")
+
+# 計算終了時間を取得(配列の時間の最後の値)
+time_end = int(flow_info_time_arr[-1])
 
 ###############################################################################
 # 格子の情報を読み込む
@@ -176,18 +176,18 @@ for t in range(time_end + 1):
     # 時刻を書き込み
     iric.cg_iRIC_Write_Sol_Time(fid, float(t))
 
-    # 標高を書き込み
-    iric.cg_iRIC_Write_Sol_Node_Real(fid, "Elevation", node_in["elevation"].T.flatten())
-
     # 流速を書き込み
-    iric.cg_iRIC_Write_Sol_Node_Real(fid, "velocityX", node_sol["velocity_x"].T.flatten())
-    iric.cg_iRIC_Write_Sol_Node_Real(fid, "velocityY", node_sol["velocity_y"].T.flatten())
-
-    # 水位を書き込み
-    iric.cg_iRIC_Write_Sol_Node_Real(fid, "waterLevel", node_sol["water_level"].T.flatten())
+    iric.cg_iRIC_Write_Sol_Node_Real(fid, "VelocityX", node_sol["velocity_x"].T.flatten())
+    iric.cg_iRIC_Write_Sol_Node_Real(fid, "VelocityY", node_sol["velocity_y"].T.flatten())
 
     # 水深を書き込み
-    iric.cg_iRIC_Write_Sol_Node_Real(fid, "depth", node_sol["depth"].T.flatten())
+    iric.cg_iRIC_Write_Sol_Node_Real(fid, "Depth[m]", node_sol["depth"].T.flatten())
+    
+    # 標高を書き込み
+    iric.cg_iRIC_Write_Sol_Node_Real(fid, "Elevation[m]", node_in["elevation"].T.flatten())
+
+    # 水位を書き込み
+    iric.cg_iRIC_Write_Sol_Node_Real(fid, "waterLevel[m]", node_sol["water_level"].T.flatten())
 
     # CGNSへの書き込み終了をGUIに伝える
     iric.cg_iRIC_Write_Sol_End(fid)
